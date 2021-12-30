@@ -130,11 +130,11 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
         Prev = (ImageButton)findViewById(R.id.prev);
     }
     public void playPause() {
-        if(isPlaying){
-            System.out.println("It s Clickedd ----------");
+        if(musicService.isPlaying()){
             showNotification(R.drawable.ic_baseline_play_arrow_24);
             Play.setImageResource(R.drawable.ic_baseline_play_circle_24);
-            Log.e("PlayPause","Clicked");//            musicService.pause();
+            Log.e("PlayPause","Clicked");//
+            musicService.pause();
             SeekBar.setMax(musicService.getDuration()/1000);
                         PlayerActivity.this.runOnUiThread(new Runnable() {
                 @Override
