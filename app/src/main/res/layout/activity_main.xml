@@ -36,9 +36,9 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MyPlayer"
+            android:text="MyMusic"
             android:textAlignment="center"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:textSize="60sp"
             android:fontFamily="sans-serif-light"/>
         <TextView

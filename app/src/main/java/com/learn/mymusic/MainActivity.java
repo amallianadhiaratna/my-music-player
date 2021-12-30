@@ -1,6 +1,5 @@
 package com.learn.mymusic;
 
-import androidx.annotation.AnimRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         l2.setAnimation(DownToUp);
         tv.setAnimation(Fade);
 
-        final Intent i = new Intent(MainActivity.this, HomeActivity.class);
+        final Intent i = new Intent(MainActivity.this, LibraryActivity.class);
 
         Thread thread = new Thread(){
             @Override

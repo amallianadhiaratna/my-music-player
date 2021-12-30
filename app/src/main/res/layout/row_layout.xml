@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,31 +7,40 @@
     android:layout_margin="6dp"
     app:contentPadding="12dp"
     app:cardElevation="6dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:background="@android:color/transparent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#111111">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/music_img"
+            android:background="@drawable/default_pic"
+            android:padding="5dp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="#000000"
             android:id="@+id/title_song"
-            />
-        <TextView
-            android:layout_below="@+id/title_song"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/music_img"
             android:maxLines="1"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/artist"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_song"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/music_img"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
         <TextView
             android:layout_below="@+id/artist"
             android:layout_width="match_parent"
@@ -54,4 +63,4 @@
             />
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

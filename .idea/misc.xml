@@ -4,14 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/play.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/skip_next.xml" value="0.215625" />
         <entry key="app/src/main/res/drawable/skip_previous.xml" value="0.21203703703703702" />
         <entry key="app/src/main/res/drawable/stop.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/row_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/row_layout.xml" value="0.3861788617886179" />
       </map>
     </option>
   </component>

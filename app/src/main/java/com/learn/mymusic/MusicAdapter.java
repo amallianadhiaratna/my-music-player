@@ -15,14 +15,14 @@ import com.learn.mymusic.Model.SongModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CustomViewHolder> {
+public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.CustomViewHolder> {
 
     static List<SongModel> songList;
     ArrayList<String> arrayListUrl = new ArrayList<>();
     ArrayList<String> arrayListSong = new ArrayList<>();
     ArrayList<String> arrayListArtist = new ArrayList<>();
     ArrayList<String> arrayListImage = new ArrayList<>();
-    public MyAdapter(List<SongModel> songList) {
+    public MusicAdapter(List<SongModel> songList) {
         this.songList = songList;
     }
 

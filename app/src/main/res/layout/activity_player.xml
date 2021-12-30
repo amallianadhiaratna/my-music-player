@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgr"
     tools:context=".PlayerActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="Now Playing"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/player_cover_image"
@@ -84,10 +100,10 @@
         android:layout_height="70dp"
         android:layout_below="@+id/seek_layout"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="35dp"
         android:layout_toRightOf="@+id/prev"
-        android:background="@drawable/ic_baseline_pause_24" />
+        android:background="@drawable/ic_baseline_pause_circle_24" />
 
     <ImageButton
         android:id="@+id/next"
