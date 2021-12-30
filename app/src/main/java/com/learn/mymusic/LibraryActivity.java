@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.learn.mymusic.Model.SongModel;
@@ -25,7 +27,9 @@ public class LibraryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setFullScreen();
         setContentView(R.layout.activity_library);
+        getSupportActionBar().hide();
 
         ApiInterface service = ApiClient.getRetrofitInstance().create(ApiInterface.class);
         Call<List<SongModel>> call = service.getStudio();
@@ -46,9 +50,13 @@ public class LibraryActivity extends AppCompatActivity {
 
     private void loadDataList(List<SongModel> songsList) {
         recyclerView = findViewById(R.id.myRecycler);
-        myAdapter = new MusicAdapter(songsList);
+        myAdapter = new MusicAdapter(songsList,getBaseContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(LibraryActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+    }
+    private void setFullScreen(){
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }

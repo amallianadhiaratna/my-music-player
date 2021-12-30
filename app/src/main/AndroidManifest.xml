@@ -33,6 +33,13 @@
         <service
             android:name=".MusicService"
             android:enabled="true" />
+        <receiver android:name=".NotificationReceiver"  android:enabled="true">
+            <intent-filter>
+                <action android:name="actionprevious"/>
+                <action android:name="actionnext"/>
+                <action android:name="actionplay"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

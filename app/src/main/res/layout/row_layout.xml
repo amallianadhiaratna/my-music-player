@@ -8,7 +8,8 @@
     app:contentPadding="12dp"
     app:cardElevation="6dp"
     app:cardCornerRadius="12dp"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:alpha="0.7">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/music_img"
-            android:background="@drawable/default_pic"
-            android:padding="5dp"/>
+            android:src="@mipmap/ic_launcher_round"
+            />
 
         <TextView
             android:id="@+id/title_song"

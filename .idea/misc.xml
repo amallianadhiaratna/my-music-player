@@ -10,9 +10,10 @@
         <entry key="app/src/main/res/drawable/skip_previous.xml" value="0.21203703703703702" />
         <entry key="app/src/main/res/drawable/stop.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_library.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/row_layout.xml" value="0.3861788617886179" />
+        <entry key="app/src/main/res/layout/row_layout.xml" value="0.33" />
       </map>
     </option>
   </component>

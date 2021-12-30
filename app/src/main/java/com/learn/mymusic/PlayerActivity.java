@@ -25,6 +25,8 @@ import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
@@ -67,7 +69,9 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setFullScreen();
         setContentView(R.layout.activity_player);
+        getSupportActionBar().hide();
         initViews();
         mediaSessionCompat = new MediaSessionCompat(getBaseContext(),"My Audio");
         getIntentMethod();
@@ -128,7 +132,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
     public void playPause() {
         if(isPlaying){
             System.out.println("It s Clickedd ----------");
-            showNotification(R.drawable.ic_baseline_play_circle_24);
+            showNotification(R.drawable.ic_baseline_play_arrow_24);
             Play.setImageResource(R.drawable.ic_baseline_play_circle_24);
             Log.e("PlayPause","Clicked");//            musicService.pause();
             SeekBar.setMax(musicService.getDuration()/1000);
@@ -145,7 +149,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
             isPlaying = false;
         }
         else{
-            showNotification(R.drawable.ic_baseline_pause_circle_24);
+            showNotification(R.drawable.ic_baseline_pause_24);
             Play.setImageResource(R.drawable.ic_baseline_pause_circle_24);
             musicService.start();
             SeekBar.setMax(musicService.getDuration()/1000);
@@ -188,7 +192,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
             uri = Uri.parse(getIntent().getStringExtra("url"));
             isPlaying = true;
         }
-        showNotification(R.drawable.ic_baseline_pause_circle_24);
+        showNotification(R.drawable.ic_baseline_pause_24);
         Intent serviceIntent = new Intent(this, MusicService.class);
         serviceIntent.putExtra("servicePosition",position);
         startService(serviceIntent);
@@ -198,6 +202,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
     public void onServiceConnected(ComponentName componentName, IBinder service) {
         MusicService.MyBinder myBinder =(MusicService.MyBinder) service;
         musicService = myBinder.getService();
+        musicService.initActionPlaying(this);
         Toast.makeText(this, "Connected" + musicService, Toast.LENGTH_SHORT).show();
         SeekBar.setMax(musicService.getDuration()/1000);
 
@@ -302,7 +307,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 }
             });
             musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_pause_circle_24);
+            showNotification(R.drawable.ic_baseline_pause_24);
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
             musicService.start();
         }else{
@@ -326,7 +331,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 }
             });
             musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_play_circle_24);
+            showNotification(R.drawable.ic_baseline_play_arrow_24);
             Play.setBackgroundResource(R.drawable.ic_baseline_play_circle_24);
 //                            musicService.start();
         }
@@ -387,7 +392,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 }
             });
             musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_pause_circle_24);
+            showNotification(R.drawable.ic_baseline_pause_24);
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
             musicService.start();
         } else {
@@ -411,7 +416,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 }
             });
             musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_play_circle_24);
+            showNotification(R.drawable.ic_baseline_play_arrow_24);
             Play.setBackgroundResource(R.drawable.ic_baseline_play_circle_24);
 //                            musicService.start();
         }
@@ -494,5 +499,9 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 .build();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
+    }
+    private void setFullScreen(){
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }
