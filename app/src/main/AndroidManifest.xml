@@ -16,13 +16,13 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".PlayerActivity"
+            android:name=".Activity.PlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".LibraryActivity"
+            android:name=".Activity.LibraryActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

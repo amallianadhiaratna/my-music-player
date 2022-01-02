@@ -1,4 +1,4 @@
-package com.learn.mymusic;
+package com.learn.mymusic.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.learn.mymusic.R;
+
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout l1,l2;
-    TextView tv;
+    private LinearLayout l1,l2;
+    private TextView tv;
 
     Animation DownToUp, Fade;
     @Override

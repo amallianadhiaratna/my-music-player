@@ -1,4 +1,4 @@
-package com.learn.mymusic;
+package com.learn.mymusic.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.learn.mymusic.Model.SongModel;
+import com.learn.mymusic.MusicAdapter;
+import com.learn.mymusic.R;
 import com.learn.mymusic.Retrofit.ApiClient;
 import com.learn.mymusic.Retrofit.ApiInterface;
 

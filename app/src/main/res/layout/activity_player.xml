@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgr"
-    tools:context=".PlayerActivity">
+    tools:context=".Activity.PlayerActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -88,7 +88,6 @@
         android:layout_below="@+id/seek_layout"
         android:layout_alignParentStart="true"
         android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/skip_previous" />
 
@@ -99,10 +98,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_below="@+id/seek_layout"
-        android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="35dp"
-        android:layout_toRightOf="@+id/prev"
         android:background="@drawable/ic_baseline_pause_circle_24" />
 
     <ImageButton
@@ -114,8 +110,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_toRightOf="@+id/play_btn"
         android:background="@drawable/skip_next" />
 
 </RelativeLayout>

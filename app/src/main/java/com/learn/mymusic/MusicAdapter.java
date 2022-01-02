@@ -3,7 +3,6 @@ package com.learn.mymusic;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -14,19 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.learn.mymusic.Activity.PlayerActivity;
 import com.learn.mymusic.Model.SongModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.CustomViewHolder> {
 
-    static List<SongModel> songList;
+    public static List<SongModel> songList;
     private Context mContext;
-    ArrayList<String> arrayListUrl = new ArrayList<>();
-    ArrayList<String> arrayListSong = new ArrayList<>();
-    ArrayList<String> arrayListArtist = new ArrayList<>();
-    ArrayList<String> arrayListImage = new ArrayList<>();
     public MusicAdapter(List<SongModel> songList, Context context) {
         this.songList = songList;
         this.mContext = context;
@@ -55,28 +50,16 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.CustomViewHo
                     .load(R.drawable.default_pic)
                     .into(holder.coverImage);
         }
-        if(!(arrayListUrl.contains(songList.get(position).getUrl())))
-            arrayListUrl.add(songList.get(position).getUrl());
-        if(!(arrayListArtist.contains(songList.get(position).getArtist())))
-            arrayListArtist.add(songList.get(position).getArtist());
-        if(!(arrayListSong.contains(songList.get(position).getSong())))
-            arrayListSong.add(songList.get(position).getSong());
-        if(!(arrayListImage.contains(songList.get(position).getCover_image())))
-            arrayListImage.add(songList.get(position).getCover_image());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), PlayerActivity.class);
-//                i.putExtra("position",holder.getBindingAdapterPosition());
                 i.putExtra("song",holder.nameTextView.getText().toString());
                 i.putExtra("url",holder.urlTextView.getText().toString());
                 i.putExtra("artist",holder.artistTextView.getText().toString());
                 i.putExtra("cover_image",holder.coverImageTextView.getText().toString());
 
-                i.putExtra("arrayListUrl",arrayListUrl);
-                i.putExtra("arrayListArtist",arrayListArtist);
-                i.putExtra("arrayListSong",arrayListSong);
-                i.putExtra("arrayListImage",arrayListImage);
                 i.putExtra("position",String.valueOf(position));
                 view.getContext().startActivity(i);
             }
