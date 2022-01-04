@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NowPlayingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/card_mini_player"
+        android:background="@color/cardview_dark_background"
+        android:padding="5dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_pic"
+            android:scaleType="centerCrop"
+            android:id="@+id/icon_mini_player"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/skip_next"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/skip_next_mini_player"
+            android:visibility="invisible"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_pause_circle_24"
+            android:layout_toStartOf="@id/skip_next_mini_player"
+            android:layout_marginEnd="10dp"
+            app:fabSize="mini"
+            android:layout_centerVertical="true"
+            android:id="@+id/play_pause_mini_player"
+            android:backgroundTint="@android:color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_song_mini_player"
+            android:textColor="#fff"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/icon_mini_player"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:layout_toStartOf="@id/play_pause_mini_player"
+            android:text="Song name is here"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/artist_mini_player"
+            android:textColor="#fff"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/icon_mini_player"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:layout_toStartOf="@id/play_pause_mini_player"
+            android:text="Artist name"
+            android:layout_below="@id/title_song_mini_player"/>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -7,6 +7,9 @@ import static com.learn.mymusic.ApplicationClass.ACTION_PREVIOUS;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class NotificationReceiver extends BroadcastReceiver {
     @Override

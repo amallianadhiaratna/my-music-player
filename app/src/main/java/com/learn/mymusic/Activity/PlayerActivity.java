@@ -38,9 +38,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.learn.mymusic.ActionPlaying;
 import com.learn.mymusic.Model.SongModel;
+import com.learn.mymusic.MusicEvent;
 import com.learn.mymusic.MusicService;
 import com.learn.mymusic.NotificationReceiver;
 import com.learn.mymusic.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +52,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
 
     private ImageView CoverImage;
     private TextView SongTitle, SongArtist;
-    private String song, artist,coverImage,url;
+    private String song, artist, coverImage, url;
     public static List<SongModel> musicList;
     private ImageButton Play, Next, Prev;
 
@@ -64,6 +67,9 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
     private boolean isPlaying = false;
     private Integer position;
     private MediaSessionCompat mediaSessionCompat;
+    private MusicEvent event;
+    public static boolean SHOW_MINI_PLAYER = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +79,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
         initViews();
         mediaSessionCompat = new MediaSessionCompat(getBaseContext(),"My Audio");
         getIntentMethod();
-        isPlaying=true;
+        isPlaying = true;
         handler = new Handler();
         initializeSeekBar();
 //        playBtnClick();
@@ -109,6 +115,13 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 .into(CoverImage);
 
         CoverImage.setAnimation(upToDown);
+
+        Log.d("MusicEvent","Event fired!");
+        event.setArtistName(artist);
+        event.setSongTitle(song);
+        event.setCoverImage(coverImage);
+        event.setPlay(true);
+        EventBus.getDefault().post(event);
     }
     private void initViews(){
         upToDown = AnimationUtils.loadAnimation(this, R.anim.uptodown);
@@ -128,19 +141,20 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
     }
     public void playPause() {
         Toast.makeText(this,"PlayPause",Toast.LENGTH_SHORT).show();
+        event.setPlay(musicService.isPlaying());
+        EventBus.getDefault().post(event);
 
-        Log.i("PlayPause","is here");
         if(musicService.isPlaying()){
-            showNotification(R.drawable.ic_baseline_play_arrow_24);
+            showNotification(true);
             Play.setBackgroundResource(0);
             Play.setBackgroundResource(R.drawable.ic_baseline_play_circle_24);
-            Log.i("PlayPause","Click to pause");//
+            Log.d("PlayPause","Click to pause");//
             musicService.pause();
             isPlaying = false;
         }
         else{
-            Log.i("PlayPause","Clicked to play");//
-            showNotification(R.drawable.ic_baseline_pause_24);
+            Log.d("PlayPause","Clicked to play");//
+            showNotification(false);
             Play.setBackgroundResource(0);
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
             musicService.start();
@@ -183,7 +197,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
             isPlaying = true;
         }
-        showNotification(R.drawable.ic_baseline_pause_24);
+        showNotification(false);
         Intent serviceIntent = new Intent(this, MusicService.class);
         serviceIntent.putExtra("servicePosition",position);
         startService(serviceIntent);
@@ -196,6 +210,7 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
         musicService.initActionPlaying(this);
         Toast.makeText(this, "Connected" + musicService, Toast.LENGTH_SHORT).show();
         SeekBar.setMax(musicService.getDuration()/1000);
+        event = new MusicEvent();
 
         Intent i = getIntent();
         song = i.getStringExtra("song");
@@ -205,8 +220,9 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
         initPlayer(song, artist, url, coverImage);
         position = Integer.parseInt(i.getStringExtra("position"));
         musicService.OnCompleted();
-        System.out.println(position);
         Toast.makeText(this, song, Toast.LENGTH_SHORT).show();
+
+        SHOW_MINI_PLAYER = true;
     }
 
     @Override
@@ -257,18 +273,24 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 handler.postDelayed(this,1000);
             }
         });
-        Glide.with(this)
+        Glide.with(getApplicationContext())
                 .load(musicList.get(position).getCover_image())
                 .override(300,200)
                 .into(CoverImage);
         musicService.OnCompleted();
+
+        Log.d("MusicEvent","Event fired!");
+        event.setArtistName(artist);
+        event.setSongTitle(song);
+        event.setCoverImage(coverImage);
+        event.setPlay(musicService.isPlaying());
+        EventBus.getDefault().post(event);
         if(musicService.isPlaying()){
-            showNotification(R.drawable.ic_baseline_pause_24);
+            showNotification(false);
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
 //            musicService.start();
         }else{
-            musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_play_arrow_24);
+            showNotification(true);
             Play.setBackgroundResource(R.drawable.ic_baseline_play_circle_24);
 //                            musicService.start();
         }
@@ -305,13 +327,19 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 .override(300,200)
                 .into(CoverImage);
         musicService.OnCompleted();
+
+        Log.d("MusicEvent","Event fired!");
+        event.setArtistName(artist);
+        event.setSongTitle(song);
+        event.setCoverImage(coverImage);
+        event.setPlay(musicService.isPlaying());
+        EventBus.getDefault().post(event);
         if (musicService.isPlaying()) {
-            showNotification(R.drawable.ic_baseline_pause_24);
+            showNotification(false);
             Play.setBackgroundResource(R.drawable.ic_baseline_pause_circle_24);
 //            musicService.start();
         } else {
-            musicService.OnCompleted();
-            showNotification(R.drawable.ic_baseline_play_arrow_24);
+            showNotification(true);
             Play.setBackgroundResource(R.drawable.ic_baseline_play_circle_24);
 //                            musicService.start();
         }
@@ -325,7 +353,8 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
         });
     }
 
-    void showNotification(int playPauseBtn){
+    void showNotification(boolean isCurrentlyPlay){
+        int playPauseBtn = isCurrentlyPlay ? R.drawable.ic_baseline_play_arrow_24:R.drawable.ic_baseline_pause_24 ;
         Intent intent = new Intent(
                 this,
                 PlayerActivity.class);
@@ -372,6 +401,15 @@ public class PlayerActivity extends AppCompatActivity  implements ActionPlaying,
                 .build();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
+        if(event==null){
+            event = new MusicEvent();
+        }
+        event.setArtistName(musicList.get(position).getArtist());
+        event.setSongTitle(musicList.get(position).getSong());
+        event.setCoverImage(musicList.get(position).getCover_image());
+        event.setPlay(isCurrentlyPlay);
+        EventBus.getDefault().post(event);
+
     }
     private void setFullScreen(){
         requestWindowFeature(Window.FEATURE_NO_TITLE);

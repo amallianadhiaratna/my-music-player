@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 
 import com.learn.mymusic.Model.SongModel;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +23,14 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     private IBinder mBinder = new MyBinder();
     private MediaPlayer mediaPlayer;
     private List<SongModel> allMusicList = new ArrayList<>();
+    private MusicEvent event;
 
     private int position = -1;
     ActionPlaying actionPlaying;
     @Override
     public void onCreate() {
         super.onCreate();
+        event = new MusicEvent();
         allMusicList = musicList;
         System.out.println(allMusicList);
         if(mediaPlayer == null) {
@@ -46,10 +50,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             switch (actionName){
                 case "playPause":
                     Toast.makeText(this,"PlayPause",Toast.LENGTH_SHORT).show();
-                    if(actionPlaying!=null){
-                        Log.e("Inside","Action");
-                        actionPlaying.playPause();
-                    }
+                    playPauseButtonClick();
                     break;
                 case "next":
                     Toast.makeText(this,"Next",Toast.LENGTH_SHORT).show();
@@ -67,6 +68,12 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                     break;}
         }
         return START_STICKY;
+    }
+
+    public void playPauseButtonClick() {
+        if(actionPlaying!=null){
+            actionPlaying.playPause();
+        }
     }
 
     private void playMedia(int startPosition){
@@ -98,6 +105,9 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     }
 
     public void start(){
+//        Log.i("Event Bus", "Set play to false");
+//        event.setPlay(true);
+//        EventBus.getDefault().post(event);
         mediaPlayer.start();
     }
     public boolean isPlaying(){
@@ -117,8 +127,8 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     }
     public void createMediaPlayer(int positionInner) {
         position = positionInner;
-        Log.i("Create media player", "is happening");
-        Log.i("create media player",allMusicList.get(positionInner).getUrl());
+        Log.d("Create media player", "is happening");
+        Log.d("create media player",allMusicList.get(positionInner).getUrl());
         System.out.println(allMusicList);
 //        uri = Uri.parse(allMusicList.get(positionInner).getUrl());
         try {
@@ -134,6 +144,9 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
 //        mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
     }
     public  void pause (){
+//        Log.i("Event Bus", "Set play to false");
+//        event.setPlay(true);
+//        EventBus.getDefault().post(event);
         mediaPlayer.pause();
     }
     public int getCurrentPosition(){
