@@ -17,8 +17,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -38,11 +36,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.learn.mymusic.ActionPlaying;
 import com.learn.mymusic.Model.SongModel;
-import com.learn.mymusic.MusicService;
-import com.learn.mymusic.NotificationReceiver;
+import com.learn.mymusic.Service.MusicService;
+import com.learn.mymusic.Receiver.NotificationReceiver;
 import com.learn.mymusic.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity  implements ActionPlaying, ServiceConnection {

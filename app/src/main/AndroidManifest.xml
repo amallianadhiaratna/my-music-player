@@ -31,9 +31,9 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".MusicService"
+            android:name=".Service.MusicService"
             android:enabled="true" />
-        <receiver android:name=".NotificationReceiver"  android:enabled="true">
+        <receiver android:name=".Receiver.NotificationReceiver"  android:enabled="true">
             <intent-filter>
                 <action android:name="actionprevious"/>
                 <action android:name="actionnext"/>

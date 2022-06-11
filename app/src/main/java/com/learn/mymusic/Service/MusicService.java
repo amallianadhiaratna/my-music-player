@@ -1,4 +1,4 @@
-package com.learn.mymusic;
+package com.learn.mymusic.Service;
 
 import static com.learn.mymusic.Activity.PlayerActivity.musicList;
 
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
+import com.learn.mymusic.ActionPlaying;
 import com.learn.mymusic.Model.SongModel;
 
 import java.io.IOException;

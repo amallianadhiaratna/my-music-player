@@ -1,4 +1,4 @@
-package com.learn.mymusic;
+package com.learn.mymusic.Receiver;
 
 import static com.learn.mymusic.ApplicationClass.ACTION_NEXT;
 import static com.learn.mymusic.ApplicationClass.ACTION_PLAY;
@@ -7,6 +7,8 @@ import static com.learn.mymusic.ApplicationClass.ACTION_PREVIOUS;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.learn.mymusic.Service.MusicService;
 
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
