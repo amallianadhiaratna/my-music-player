@@ -23,7 +23,7 @@ This project is mainly created with:
 - Service (Foreground / Background)
 
 ## Project Structures
-
+```
 my-music-player
 ├─ Dockerfile
 ├─ README.md
@@ -48,3 +48,4 @@ my-music-player
 ├─ gradlew
 ├─ gradlew.bat
 └─ settings.gradle
+```
