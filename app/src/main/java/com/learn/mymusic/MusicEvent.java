@@ -5,13 +5,22 @@ public class MusicEvent {
     private static String songTitle;
     private static String artistName;
     private static String coverImage;
+    private int playPauseBtn;
+
+    public int getPlayPauseBtn() {
+        return playPauseBtn;
+    }
+
+    public void setPlayPauseBtn(int playPauseBtn) {
+        this.playPauseBtn = playPauseBtn;
+    }
 
     public String getSongTitle() {
         return songTitle;
     }
 
     public void setSongTitle(String songTitle) {
-        this.songTitle = songTitle;
+        MusicEvent.songTitle = songTitle;
     }
 
     public String getArtistName() {
@@ -19,7 +28,7 @@ public class MusicEvent {
     }
 
     public void setArtistName(String artistName) {
-        this.artistName = artistName;
+        MusicEvent.artistName = artistName;
     }
 
     public boolean isPlay() {

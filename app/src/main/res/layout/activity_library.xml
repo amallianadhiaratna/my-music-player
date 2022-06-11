@@ -19,13 +19,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="376dp"
+        android:layout_height="593dp"
         android:layout_below="@+id/title_library"
         android:layout_alignBottom="@+id/frag_mini_player"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="77dp" />
 
     <FrameLayout
         android:layout_width="match_parent"

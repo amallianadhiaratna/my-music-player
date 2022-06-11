@@ -39,7 +39,8 @@
         android:layout_below="@+id/player_cover_image"
         android:textColor="@android:color/white"
         android:textAlignment="center"
-        android:textSize="22sp"/>
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:layout_width="match_parent"

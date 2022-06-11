@@ -1,9 +1,5 @@
 package com.learn.mymusic;
 
-import static com.learn.mymusic.Activity.PlayerActivity.SHOW_MINI_PLAYER;
-import static com.learn.mymusic.Activity.PlayerActivity.musicList;
-import static com.learn.mymusic.MusicAdapter.songList;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -53,10 +49,13 @@ public class NowPlayingFragment extends Fragment implements ServiceConnection {
         artistMiniPlayer.setText(event.getArtistName());
         songMiniPlayer.setText(event.getSongTitle());
         isPlaying = event.isPlay();
-        Glide.with(getContext())
-                .load(event.getCoverImage())
-                .into(iconMiniPlayer);    }
-
+        playPauseBtn.setImageResource(event.getPlayPauseBtn());
+        if(getActivity()!=null) {
+            Glide.with(getContext())
+                    .load(event.getCoverImage())
+                    .into(iconMiniPlayer);
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
