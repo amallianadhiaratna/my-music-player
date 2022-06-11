@@ -10,19 +10,35 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Music Library"
+        android:text="Songs "
         android:textColor="@android:color/white"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:id="@+id/title_library"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/title_library"
         android:id="@+id/myRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="376dp"
+        android:layout_height="593dp"
+        android:layout_below="@+id/title_library"
+        android:layout_alignBottom="@+id/frag_mini_player"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="77dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/frag_mini_player"
+        android:visibility="invisible">
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_now_playing"
+            android:name="com.learn.mymusic.NowPlayingFragment"
+            />
+    </FrameLayout>
 </RelativeLayout>

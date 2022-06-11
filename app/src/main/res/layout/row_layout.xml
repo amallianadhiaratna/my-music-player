@@ -30,7 +30,8 @@
             android:layout_toEndOf="@+id/music_img"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/artist"
@@ -41,7 +42,7 @@
             android:layout_toEndOf="@+id/music_img"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
         <TextView
             android:layout_below="@+id/artist"
             android:layout_width="match_parent"
